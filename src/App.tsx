@@ -8,6 +8,21 @@ const Icon = ({ name, size = 24, cls = '' }: { name: string; size?: number; cls?
   </span>
 )
 
+const RobotLogo = ({ size = 20 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 32 32" fill="none" aria-hidden="true">
+    <path d="M11 9 8.5 5.5M21 9l2.5-3.5" stroke="#BFDBFE" strokeWidth="2" strokeLinecap="round" />
+    <circle cx="8.2" cy="5.2" r="1.7" fill="#FDE68A" />
+    <circle cx="23.8" cy="5.2" r="1.7" fill="#FDE68A" />
+    <path d="M7 13.5H4.8a2 2 0 0 0 0 4H7m18 0h2.2a2 2 0 0 0 0-4H25" stroke="#93C5FD" strokeWidth="2.2" strokeLinecap="round" />
+    <rect x="6.5" y="9" width="19" height="16.5" rx="5" fill="#EFF6FF" stroke="#BFDBFE" strokeWidth="1.5" />
+    <path d="M9.5 14.5c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2v-3Zm7 0c0-1.1.9-2 2-2h2c1.1 0 2 .9 2 2v3c0 1.1-.9 2-2 2h-2c-1.1 0-2-.9-2-2v-3Z" fill="#1E3A8A" />
+    <circle cx="12.5" cy="16" r="1" fill="#67E8F9" />
+    <circle cx="19.5" cy="16" r="1" fill="#67E8F9" />
+    <path d="M12 22h8" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" />
+    <path d="M16 22v2" stroke="#2563EB" strokeWidth="2" strokeLinecap="round" />
+  </svg>
+)
+
 // ── Data ─────────────────────────────────────────────────────────────────────
 
 const courseModules = [
@@ -22,6 +37,152 @@ const courseModules = [
   { num: 9, title: 'Currículo', desc: 'Como montar um currículo atrativo e eficiente.' },
   { num: 10, title: 'Entrevista de Emprego', desc: 'Preparação, postura e técnicas para se destacar.' },
 ]
+
+const quizQuestions = [
+  {
+    module: 'Módulo 01 • Introdução à Informática',
+    question: 'Qual opção representa um exemplo de hardware?',
+    options: ['Microsoft Word', 'Teclado', 'Sistema operacional', 'Navegador de internet'],
+    correctOption: 1,
+    explanation: 'Hardware é a parte física do computador, ou seja, aquilo que podemos tocar, como o teclado.',
+  },
+  {
+    module: 'Módulo 02 • Windows e Arquivos',
+    question: 'Onde ficam temporariamente os arquivos excluídos no Windows?',
+    options: ['Menu Iniciar', 'Barra de tarefas', 'Lixeira', 'Área de trabalho'],
+    correctOption: 2,
+    explanation: 'A Lixeira guarda temporariamente os arquivos excluídos, permitindo restaurá-los quando necessário.',
+  },
+  {
+    module: 'Módulo 03 • Digitação',
+    question: 'Qual atalho de teclado é usado para salvar um documento?',
+    options: ['Ctrl + C', 'Ctrl + S', 'Ctrl + V', 'Ctrl + P'],
+    correctOption: 1,
+    explanation: 'Ctrl + S é o atalho para salvar. Os demais atalhos copiam, colam e imprimem.',
+  },
+  {
+    module: 'Módulo 04 • Word',
+    question: 'Para que o Microsoft Word é mais utilizado?',
+    options: ['Criar e editar documentos de texto', 'Controlar o estoque de uma loja', 'Navegar na internet', 'Criar apresentações em slides'],
+    correctOption: 0,
+    explanation: 'O Word é usado para criar, editar e organizar documentos de texto, como currículos, cartas e relatórios.',
+  },
+  {
+    module: 'Módulo 05 • Excel',
+    question: 'Na planilha, o que representa a referência A1?',
+    options: ['A coluna 1 e a linha A', 'A primeira fórmula da planilha', 'A coluna A e a linha 1', 'Um arquivo salvo no Excel'],
+    correctOption: 2,
+    explanation: 'As colunas são identificadas por letras e as linhas por números. Por isso, A1 é a coluna A na linha 1.',
+  },
+  {
+    module: 'Módulo 06 • Internet e E-mail',
+    question: 'Qual é uma prática segura ao usar internet e e-mail?',
+    options: ['Compartilhar senhas com colegas', 'Clicar em qualquer link recebido', 'Baixar arquivos suspeitos', 'Evitar links desconhecidos'],
+    correctOption: 3,
+    explanation: 'Evitar links desconhecidos e arquivos suspeitos ajuda a proteger informações pessoais e profissionais.',
+  },
+  {
+    module: 'Módulo 07 • PowerPoint',
+    question: 'Ao criar um slide, qual boa prática ajuda na clareza da apresentação?',
+    options: ['Colocar muito texto em um único slide', 'Usar informações claras e fáceis de entender', 'Usar imagens sem relação com o tema', 'Ler todo o texto dos slides para o público'],
+    correctOption: 1,
+    explanation: 'A apostila orienta a usar informações claras, bem organizadas e sem excesso de texto em um único slide.',
+  },
+  {
+    module: 'Módulo 08 • Comunicação Profissional',
+    question: 'Qual mensagem demonstra comunicação profissional?',
+    options: ['OI, MANDA O ARQUIVO AI', 'Olá, Ana. Poderia me enviar o arquivo da atividade, por favor?', 'manda logo o arquivo', 'PRECISO DISSO AGORA!!!'],
+    correctOption: 1,
+    explanation: 'Uma comunicação profissional deve ser clara, educada e respeitosa.',
+  },
+  {
+    module: 'Módulo 09 • Currículo',
+    question: 'O que deve ser evitado ao montar um currículo?',
+    options: ['Informações falsas', 'E-mail profissional', 'Cursos realizados', 'Habilidades que você possui'],
+    correctOption: 0,
+    explanation: 'O currículo deve ser verdadeiro, organizado e fácil de ler. Nunca invente informações ou habilidades.',
+  },
+  {
+    module: 'Módulo 10 • Entrevista de Emprego',
+    question: 'Qual atitude ajuda na preparação para uma entrevista de emprego?',
+    options: ['Inventar experiências para impressionar', 'Chegar atrasado para demonstrar tranquilidade', 'Conhecer a empresa e reler o currículo', 'Usar o celular durante a conversa'],
+    correctOption: 2,
+    explanation: 'Conhecer a empresa, reler o currículo e entender a vaga ajudam a responder com mais segurança.',
+  },
+]
+
+function escapePdfText(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^\x20-\x7E]/g, '')
+    .replace(/\\/g, '\\\\')
+    .replace(/\(/g, '\\(')
+    .replace(/\)/g, '\\)')
+}
+
+function downloadCertificate(name: string, score: number) {
+  const studentName = escapePdfText(name.trim() || 'Participante')
+  const date = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' }).format(new Date())
+  const certificateDate = escapePdfText(date)
+  const content = [
+    '0.04 0.07 0.19 rg',
+    '0 0 842 595 re f',
+    '0.98 0.97 1 rg',
+    '32 32 778 531 re f',
+    '0.49 0.23 0.92 RG',
+    '4 w',
+    '46 46 750 503 re S',
+    '0.49 0.23 0.92 rg',
+    'BT /F2 30 Tf 1 0 0 1 255 462 Tm (CERTIFICADO) Tj ET',
+    '0.12 0.16 0.30 rg',
+    'BT /F1 16 Tf 1 0 0 1 273 425 Tm (DE CONCLUSAO) Tj ET',
+    '0.25 0.28 0.40 rg',
+    'BT /F1 15 Tf 1 0 0 1 228 362 Tm (Certificamos que) Tj ET',
+    '0.12 0.16 0.30 rg',
+    'BT /F2 28 Tf 1 0 0 1 421 313 Tm (' + studentName + ') Tj ET',
+    '0.25 0.28 0.40 rg',
+    'BT /F1 14 Tf 1 0 0 1 160 268 Tm (concluiu com excelencia o Quiz Interativo do Curso de Informatica) Tj ET',
+    'BT /F1 14 Tf 1 0 0 1 204 242 Tm (do projeto Le-Robots, com ' + score + ' de 10 acertos.) Tj ET',
+    '0.49 0.23 0.92 RG',
+    '1 w',
+    '286 163 m 556 163 l S',
+    '0.49 0.23 0.92 rg',
+    'BT /F3 25 Tf 1 0 0 1 365 174 Tm (Le-Robots) Tj ET',
+    '0.25 0.28 0.40 rg',
+    'BT /F1 12 Tf 1 0 0 1 297 140 Tm (Le-Robots - Tecnologia que Transforma) Tj ET',
+    'BT /F1 11 Tf 1 0 0 1 328 112 Tm (' + certificateDate + ') Tj ET',
+  ].join('\n')
+  const objects = [
+    '1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj',
+    '2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj',
+    '3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 842 595] /Resources << /Font << /F1 5 0 R /F2 6 0 R /F3 7 0 R >> >> /Contents 4 0 R >>\nendobj',
+    '4 0 obj\n<< /Length ' + content.length + ' >>\nstream\n' + content + '\nendstream\nendobj',
+    '5 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj',
+    '6 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>\nendobj',
+    '7 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Oblique >>\nendobj',
+  ]
+  let pdf = '%PDF-1.4\n'
+  const offsets = [0]
+  objects.forEach((object, index) => {
+    offsets[index + 1] = pdf.length
+    pdf += object + '\n'
+  })
+  const xrefOffset = pdf.length
+  pdf += 'xref\n0 ' + (objects.length + 1) + '\n0000000000 65535 f \n'
+  offsets.slice(1).forEach(offset => {
+    pdf += String(offset).padStart(10, '0') + ' 00000 n \n'
+  })
+  pdf += 'trailer\n<< /Size ' + (objects.length + 1) + ' /Root 1 0 R >>\nstartxref\n' + xrefOffset + '\n%%EOF'
+
+  const fileName = studentName.replace(/[^a-zA-Z0-9]/g, '_').replace(/_+/g, '_') || 'participante'
+  const downloadUrl = URL.createObjectURL(new Blob([pdf], { type: 'application/pdf' }))
+  const link = document.createElement('a')
+  link.href = downloadUrl
+  link.download = 'Certificado_Le-Robots_' + fileName + '.pdf'
+  link.click()
+  window.setTimeout(() => URL.revokeObjectURL(downloadUrl), 1000)
+}
 
 const projectGoals = [
   { icon: 'computer', title: 'Informática', color: 'bg-blue-100 text-blue-700' },
@@ -272,6 +433,213 @@ function QuizMockup() {
   )
 }
 
+function QuizPlayer({ onExit }: { onExit: () => void }) {
+  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [selectedOption, setSelectedOption] = useState<number | null>(null)
+  const [score, setScore] = useState(0)
+  const [timeLeft, setTimeLeft] = useState(25)
+  const [isComplete, setIsComplete] = useState(false)
+  const [certificateName, setCertificateName] = useState('')
+  const question = quizQuestions[currentQuestion]
+  const isAnswered = selectedOption !== null
+  const isCorrect = selectedOption === question.correctOption
+
+  useEffect(() => {
+    if (isAnswered || isComplete) return
+
+    const timer = window.setInterval(() => {
+      setTimeLeft(previousTime => {
+        if (previousTime <= 1) {
+          window.clearInterval(timer)
+          setSelectedOption(-1)
+          return 0
+        }
+        return previousTime - 1
+      })
+    }, 1000)
+
+    return () => window.clearInterval(timer)
+  }, [currentQuestion, isAnswered, isComplete])
+
+  const selectOption = (optionIndex: number) => {
+    if (isAnswered) return
+    setSelectedOption(optionIndex)
+    if (optionIndex === question.correctOption) setScore(previousScore => previousScore + 100)
+  }
+
+  const advanceQuestion = () => {
+    if (currentQuestion === quizQuestions.length - 1) {
+      setIsComplete(true)
+      return
+    }
+    setCurrentQuestion(previousQuestion => previousQuestion + 1)
+    setSelectedOption(null)
+    setTimeLeft(25)
+  }
+
+  const restartQuiz = () => {
+    setCurrentQuestion(0)
+    setSelectedOption(null)
+    setScore(0)
+    setTimeLeft(25)
+    setIsComplete(false)
+    setCertificateName('')
+  }
+
+  if (isComplete) {
+    const correctAnswers = score / 100
+    const hasCertificate = correctAnswers > 8
+    return (
+      <div className="flex-1 flex flex-col justify-center animate-fade-up">
+        <div className="text-center rounded-3xl border border-purple-100 bg-gradient-to-br from-white via-purple-50 to-orange-50 p-8 shadow-lg shadow-purple-500/10">
+          <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-lg shadow-purple-500/25">
+            <Icon name="emoji_events" size={32} />
+          </div>
+          <p className="text-xs font-bold uppercase tracking-widest text-purple-700 mb-2">Quiz concluído</p>
+          <h2 className="text-3xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
+            Muito bem!
+          </h2>
+          <p className="text-gray-600 text-sm mb-6">Você acertou {correctAnswers} de {quizQuestions.length} questões.</p>
+          <div className="grid grid-cols-2 gap-3 mb-6">
+            <div className="rounded-2xl bg-white border border-purple-100 p-3">
+              <div className="text-2xl font-black text-purple-700">{score}</div>
+              <div className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Pontos</div>
+            </div>
+            <div className="rounded-2xl bg-white border border-purple-100 p-3">
+              <div className="text-2xl font-black text-purple-700">{Math.round((correctAnswers / quizQuestions.length) * 100)}%</div>
+              <div className="text-[11px] text-gray-500 font-semibold uppercase tracking-wide">Aproveitamento</div>
+            </div>
+          </div>
+          {hasCertificate && (
+            <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-left">
+              <div className="flex items-center gap-2 text-amber-900 font-black text-sm mb-1">
+                <Icon name="workspace_premium" size={20} />
+                Parabéns! Você conquistou seu certificado.
+              </div>
+              <p className="text-xs text-amber-800 leading-relaxed mb-3">Com mais de 8 acertos, você pode baixar um certificado simples de conclusão em PDF.</p>
+              <label className="block text-xs font-bold text-gray-700 mb-1.5" htmlFor="certificate-name">Nome no certificado</label>
+              <div className="flex flex-col sm:flex-row gap-2">
+                <input
+                  id="certificate-name"
+                  type="text"
+                  value={certificateName}
+                  onChange={event => setCertificateName(event.target.value)}
+                  placeholder="Digite seu nome completo"
+                  className="flex-1 min-w-0 rounded-xl border border-amber-200 bg-white px-3 py-2.5 text-sm text-gray-900 outline-none placeholder:text-gray-400 focus:border-purple-500 focus:ring-2 focus:ring-purple-100"
+                />
+                <button
+                  type="button"
+                  onClick={() => downloadCertificate(certificateName, correctAnswers)}
+                  disabled={!certificateName.trim()}
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-purple-600 px-4 py-2.5 text-sm font-bold text-white hover:bg-purple-700 disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                >
+                  <Icon name="download" size={18} />
+                  Baixar PDF
+                </button>
+              </div>
+            </div>
+          )}
+          <div className="flex flex-col sm:flex-row gap-3">
+            <button type="button" onClick={restartQuiz} className="flex-1 inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-sm text-white bg-purple-600 hover:bg-purple-700 transition-colors cursor-pointer">
+              <Icon name="replay" size={18} />
+              Tentar novamente
+            </button>
+            <button type="button" onClick={onExit} className="flex-1 py-3 px-4 rounded-xl font-bold text-sm text-purple-700 bg-white border border-purple-200 hover:bg-purple-50 transition-colors cursor-pointer">
+              Voltar ao material
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <div className="flex-1 flex flex-col animate-fade-up">
+      <div className="flex items-center justify-between gap-3 pb-5 mb-5 border-b border-purple-100">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-10 h-10 shrink-0 rounded-xl bg-purple-100 flex items-center justify-center text-purple-700">
+            <Icon name="quiz" size={21} />
+          </div>
+          <div className="min-w-0">
+            <div className="text-xs font-black text-purple-900 uppercase tracking-wider">Quiz Interativo</div>
+            <div className="text-xs text-gray-500 font-medium truncate">{question.module}</div>
+          </div>
+        </div>
+        <div className={`shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-full border text-xs font-bold ${timeLeft <= 5 ? 'bg-red-50 border-red-200 text-red-700' : 'bg-amber-50 border-amber-200 text-amber-700'}`}>
+          <Icon name="timer" size={14} />
+          {timeLeft}s
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between text-xs font-semibold mb-2">
+        <span className="text-gray-500">Questão {String(currentQuestion + 1).padStart(2, '0')} de {quizQuestions.length}</span>
+        <span className="text-purple-700">{score} pontos</span>
+      </div>
+      <div className="h-2 bg-purple-100 rounded-full overflow-hidden mb-6">
+        <div className="h-full rounded-full bg-gradient-to-r from-purple-600 to-fuchsia-500 transition-all duration-300" style={{ width: `${((currentQuestion + 1) / quizQuestions.length) * 100}%` }} />
+      </div>
+
+      <h2 className="text-xl sm:text-2xl font-black text-gray-900 leading-tight mb-6" style={{ fontFamily: 'Outfit, sans-serif' }}>
+        {question.question}
+      </h2>
+
+      <div className="space-y-3">
+        {question.options.map((option, optionIndex) => {
+          const isSelected = selectedOption === optionIndex
+          const isCorrectOption = optionIndex === question.correctOption
+          const optionStyle = isAnswered
+            ? isCorrectOption
+              ? 'border-emerald-500 bg-emerald-50 text-emerald-950'
+              : isSelected
+                ? 'border-red-400 bg-red-50 text-red-950'
+                : 'border-gray-200 bg-white text-gray-500'
+            : 'border-gray-200 bg-white text-gray-700 hover:border-purple-400 hover:bg-purple-50'
+
+          return (
+            <button
+              key={option}
+              type="button"
+              onClick={() => selectOption(optionIndex)}
+              disabled={isAnswered}
+              className={`w-full flex items-center gap-3 p-4 rounded-2xl border text-left text-sm font-semibold transition-all ${optionStyle} ${isAnswered ? 'cursor-default' : 'cursor-pointer'}`}
+            >
+              <span className={`w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-xs font-black ${isAnswered && isCorrectOption ? 'bg-emerald-500 text-white' : isAnswered && isSelected ? 'bg-red-500 text-white' : 'bg-purple-100 text-purple-700'}`}>
+                {isAnswered && isCorrectOption ? <Icon name="check" size={16} /> : isAnswered && isSelected ? <Icon name="close" size={16} /> : String.fromCharCode(65 + optionIndex)}
+              </span>
+              <span>{option}</span>
+            </button>
+          )
+        })}
+      </div>
+
+      {isAnswered && (
+        <div className={`mt-5 p-4 rounded-2xl border ${isCorrect ? 'bg-emerald-50 border-emerald-200' : 'bg-orange-50 border-orange-200'} animate-fade-up`}>
+          <div className={`flex items-center gap-2 text-sm font-black mb-1 ${isCorrect ? 'text-emerald-800' : 'text-orange-800'}`}>
+            <Icon name={isCorrect ? 'check_circle' : 'lightbulb'} size={19} />
+            {isCorrect ? 'Resposta correta!' : timeLeft === 0 ? 'Tempo esgotado!' : 'Continue aprendendo!'}
+          </div>
+          <p className="text-xs leading-relaxed text-gray-700">{question.explanation}</p>
+        </div>
+      )}
+
+      <div className="mt-auto pt-6 flex items-center justify-between gap-4">
+        <button type="button" onClick={onExit} className="text-sm font-bold text-gray-500 hover:text-purple-700 transition-colors cursor-pointer">
+          Sair do quiz
+        </button>
+        <button
+          type="button"
+          onClick={advanceQuestion}
+          disabled={!isAnswered}
+          className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl font-bold text-sm text-white bg-purple-600 hover:bg-purple-700 disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed transition-colors cursor-pointer"
+        >
+          {currentQuestion === quizQuestions.length - 1 ? 'Ver resultado' : 'Próxima questão'}
+          <Icon name="arrow_forward" size={18} />
+        </button>
+      </div>
+    </div>
+  )
+}
+
 // ── Navigation ────────────────────────────────────────────────────────────────
 
 const navItems = [
@@ -313,7 +681,7 @@ function Navbar({ onNavigate }: { onNavigate?: (href: string) => void }) {
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         <a href="#inicio" onClick={e => handleLinkClick(e, '#inicio')} className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shadow-sm">
-            <Icon name="computer" size={18} cls="text-white" />
+            <RobotLogo size={21} />
           </div>
           <span style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 800, fontSize: '1.125rem' }}>
             <span className={scrolled ? 'text-blue-700 transition-colors' : 'text-blue-400 transition-colors'}>Le</span>
@@ -798,7 +1166,7 @@ function AprendizadoSection({ onOpenStudyQuiz }: { onOpenStudyQuiz: () => void }
 
               <p className="text-xs text-gray-400 mt-3 flex items-center gap-1.5">
                 <Icon name="info" size={14} cls="text-blue-600 shrink-0" />
-                <span>Abre a tela dividida com a apostila e o quiz lado a lado.</span>
+                <span>Abra a central de estudos e acesse o quiz em uma tela exclusiva.</span>
               </p>
             </div>
           </div>
@@ -808,10 +1176,9 @@ function AprendizadoSection({ onOpenStudyQuiz }: { onOpenStudyQuiz: () => void }
   )
 }
 
-// ── Split Study & Quiz Screen (Tela dividida em dois) ─────────────────────────
+// ── Study Hub & Dedicated Quiz ───────────────────────────────────────────────
 
-function SplitStudyQuizScreen({ onBack }: { onBack: () => void }) {
-  const [quizNoticeOpen, setQuizNoticeOpen] = useState(false)
+function StudyHubScreen({ onBack, onOpenQuiz }: { onBack: () => void; onOpenQuiz: () => void }) {
   const APOSTILA_DOCS_URL =
     'https://docs.google.com/document/d/1Elg9TGelZ1Y95nLwF1seO-8cNSxfAZIdUygyFrY-z1k/edit?tab=t.0#heading=h.aczyuw2yex2w'
 
@@ -830,13 +1197,13 @@ function SplitStudyQuizScreen({ onBack }: { onBack: () => void }) {
             </button>
             <div className="hidden sm:flex items-center gap-2 text-xs text-gray-400">
               <span>/</span>
-              <span className="text-gray-700 font-medium">Central de Estudos & Quiz</span>
+              <span className="text-gray-700 font-medium">Central de Estudos</span>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-lg bg-blue-600 flex items-center justify-center text-white">
-              <Icon name="computer" size={16} />
+              <RobotLogo size={18} />
             </div>
             <span className="font-bold text-gray-900 text-sm hidden md:inline" style={{ fontFamily: 'Outfit, sans-serif' }}>
               Le-Robots <span className="text-blue-600 font-normal text-xs">• ODS 8</span>
@@ -845,8 +1212,7 @@ function SplitStudyQuizScreen({ onBack }: { onBack: () => void }) {
         </div>
       </header>
 
-      {/* Main Split-Screen Container */}
-      <main className="flex-1 max-w-7xl mx-auto px-6 py-10 w-full">
+      <main className="flex-1 max-w-3xl mx-auto px-6 py-10 w-full">
         {/* Header summary */}
         <div className="text-center max-w-3xl mx-auto mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-3">
@@ -854,17 +1220,14 @@ function SplitStudyQuizScreen({ onBack }: { onBack: () => void }) {
             Ambiente Integrado de Aprendizagem
           </div>
           <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-3" style={{ fontFamily: 'Outfit, sans-serif' }}>
-            Apostila Digital & Desafio do Quiz
+            Apostila Digital
           </h1>
           <p className="text-gray-600 text-sm sm:text-base">
-            Utilize a apostila no lado esquerdo como material de consulta e preparação para responder às questões do Quiz no lado direito.
+            Consulte o material do curso e, quando estiver pronto, inicie o desafio em uma tela exclusiva para o quiz.
           </p>
         </div>
 
-        {/* Split Grid: Left Side (Apostila) and Right Side (Quiz) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-stretch">
-          {/* ────────────────── LADO ESQUERDO: APOSTILA ────────────────── */}
-          <div className="bg-white rounded-3xl p-8 sm:p-10 border border-blue-100 shadow-xl shadow-blue-500/5 flex flex-col relative overflow-hidden">
+        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-blue-100 shadow-xl shadow-blue-500/5 flex flex-col relative overflow-hidden">
             {/* Background ambient glow */}
             <div className="absolute top-0 right-0 w-72 h-72 bg-blue-50/70 rounded-full blur-3xl -z-10 pointer-events-none" />
 
@@ -948,131 +1311,55 @@ function SplitStudyQuizScreen({ onBack }: { onBack: () => void }) {
                 <span>Link oficial do Google Documentos configurado para leitura imediata.</span>
               </p>
             </div>
-          </div>
-
-          {/* ────────────────── LADO DIREITO: QUIZ ────────────────── */}
-          <div className="bg-white rounded-3xl p-8 sm:p-10 border border-purple-100 shadow-xl shadow-purple-500/5 flex flex-col relative overflow-hidden">
-            {/* Background ambient glow */}
-            <div className="absolute top-0 right-0 w-72 h-72 bg-purple-50/70 rounded-full blur-3xl -z-10 pointer-events-none" />
-
-            <div className="flex-1 flex flex-col">
-              {/* Header Badge */}
-              <div className="flex items-center justify-between mb-6">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-purple-50 text-purple-700 border border-purple-200 shadow-xs">
-                  <Icon name="bolt" size={15} />
-                  Desafio & Fixação de Conhecimento
-                </span>
-                <span className="text-xs font-bold text-purple-700 bg-purple-100/70 px-2.5 py-1 rounded-lg border border-purple-200">
-                  Em Breve ⚡
-                </span>
-              </div>
-
-              {/* 3D Quiz Preview Card */}
-              <div className="my-3">
-                <QuizMockup />
-              </div>
-
-              {/* Title & Body for the Quiz */}
-              <h2 className="text-2xl sm:text-3xl font-black text-gray-900 mb-3 tracking-tight" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                Quiz Interativo do <br />
-                <span style={{ background: 'linear-gradient(90deg, #7c3aed, #ea580c)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-                  Curso de Informática
-                </span>
-              </h2>
-
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
-                Coloque em prática tudo o que você aprendeu com a apostila! Nosso <strong>Quiz Interativo</strong> foi desenvolvido para testar sua compreensão dos 10 módulos de forma dinâmica, rápida e gamificada.
-              </p>
-              <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-5">
-                Descubra seus pontos fortes, reforce os conceitos essenciais e ganhe a confiança necessária para se destacar em processos seletivos do mercado de trabalho.
-              </p>
-
-              {/* Checklist points */}
-              <div className="space-y-3 p-4 rounded-2xl bg-purple-50/50 border border-purple-100/80 mb-6">
-                <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-white shrink-0 mt-0.5">
-                    <Icon name="check" size={13} />
-                  </div>
-                  <div className="text-xs text-gray-700">
-                    <strong className="text-gray-900">Perguntas dos 10 Módulos:</strong> Questões diretas sobre hardware, Word, Excel, internet, segurança e postura profissional.
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-white shrink-0 mt-0.5">
-                    <Icon name="check" size={13} />
-                  </div>
-                  <div className="text-xs text-gray-700">
-                    <strong className="text-gray-900">Feedback e Explicações:</strong> Entenda a resposta correta instantaneamente após cada pergunta.
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-3">
-                  <div className="w-5 h-5 rounded-full bg-purple-600 flex items-center justify-center text-white shrink-0 mt-0.5">
-                    <Icon name="check" size={13} />
-                  </div>
-                  <div className="text-xs text-gray-700">
-                    <strong className="text-gray-900">Simulação para o Mercado:</strong> Ganhe prática para testes práticos de vagas de Jovem Aprendiz e Primeiro Emprego.
-                  </div>
-                </div>
-              </div>
+          <div className="mt-8 p-5 sm:p-6 rounded-2xl border border-purple-100 bg-gradient-to-r from-purple-50 to-fuchsia-50 flex flex-col sm:flex-row sm:items-center gap-5">
+            <div className="w-12 h-12 shrink-0 rounded-2xl bg-purple-600 text-white flex items-center justify-center shadow-md shadow-purple-500/25">
+              <Icon name="quiz" size={25} />
             </div>
-
-            {/* Action CTA for Quiz */}
-            <div className="mt-auto pt-2">
-              <button
-                type="button"
-                onClick={() => setQuizNoticeOpen(true)}
-                className="inline-flex items-center justify-center gap-3 w-full py-4 px-6 rounded-2xl font-bold text-white shadow-lg shadow-purple-600/25 transition-all hover:scale-[1.02] active:scale-[0.98] text-base cursor-pointer"
-                style={{ background: 'linear-gradient(135deg, #7c3aed, #9333ea)' }}
-              >
-                <Icon name="play_arrow" size={22} />
-                <span>Acessar Quiz Interativo</span>
-                <Icon name="bolt" size={18} />
-              </button>
-
-              <p className="text-xs text-gray-500 mt-3.5 flex items-center justify-center gap-1.5 text-center">
-                <Icon name="schedule" size={15} cls="text-purple-600 shrink-0" />
-                <span>O módulo interativo de perguntas e respostas está sendo preparado pela equipe Le-Robots!</span>
-              </p>
+            <div className="flex-1">
+              <h2 className="font-black text-gray-900 text-lg" style={{ fontFamily: 'Outfit, sans-serif' }}>Pronto para o desafio?</h2>
+              <p className="text-sm text-gray-600">São 10 questões, com feedback imediato e pontuação ao final.</p>
             </div>
+            <button type="button" onClick={onOpenQuiz} className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl font-bold text-sm text-white bg-purple-600 hover:bg-purple-700 shadow-lg shadow-purple-500/20 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer">
+              <Icon name="play_arrow" size={20} />
+              Iniciar quiz
+            </button>
           </div>
         </div>
+      </main>
+    </div>
+  )
+}
 
-        {/* Modal / Alert Dialog for Quiz */}
-        {quizNoticeOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fade-up">
-            <div className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl border border-gray-100 text-center relative">
-              <div className="w-16 h-16 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center mx-auto mb-4">
-                <Icon name="rocket_launch" size={32} />
-              </div>
-              <h3 className="text-2xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>
-                Quiz em Construção!
-              </h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-6">
-                Estamos preparando as questões interativas dos 10 módulos com muito carinho. Enquanto isso, aproveite para ler a apostila completa no Google Docs e se preparar para gabaritar o desafio!
-              </p>
-              <div className="flex flex-col gap-2.5">
-                <a
-                  href={APOSTILA_DOCS_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 py-3 px-5 rounded-xl font-bold text-sm text-white bg-blue-600 hover:bg-blue-700 transition-colors"
-                >
-                  <Icon name="menu_book" size={18} />
-                  <span>Estudar na Apostila</span>
-                </a>
-                <button
-                  type="button"
-                  onClick={() => setQuizNoticeOpen(false)}
-                  className="py-2.5 px-5 rounded-xl font-semibold text-sm text-gray-600 hover:bg-gray-100 transition-colors cursor-pointer"
-                >
-                  Fechar
-                </button>
-              </div>
-            </div>
+function DedicatedQuizScreen({ onBack }: { onBack: () => void }) {
+  return (
+    <div className="min-h-screen bg-slate-50 flex flex-col">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-purple-100 shadow-xs">
+        <div className="max-w-3xl mx-auto px-6 h-16 flex items-center justify-between">
+          <button onClick={onBack} className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold text-gray-700 hover:text-purple-700 bg-gray-100 hover:bg-purple-50 transition-colors cursor-pointer">
+            <Icon name="arrow_back" size={18} />
+            <span>Voltar aos estudos</span>
+          </button>
+          <div className="flex items-center gap-2 text-purple-700">
+            <Icon name="quiz" size={21} />
+            <span className="font-black text-sm" style={{ fontFamily: 'Outfit, sans-serif' }}>Quiz Interativo</span>
           </div>
-        )}
+        </div>
+      </header>
+
+      <main className="flex-1 w-full max-w-3xl mx-auto px-6 py-10 sm:py-14">
+        <div className="text-center max-w-xl mx-auto mb-8">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-800 mb-3">
+            <Icon name="bolt" size={15} />
+            Desafio de Fixação
+          </div>
+          <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-2" style={{ fontFamily: 'Outfit, sans-serif' }}>Curso de Informática</h1>
+          <p className="text-sm sm:text-base text-gray-600">Responda às 10 questões e acompanhe seu desempenho.</p>
+        </div>
+
+        <section className="min-h-[590px] bg-white rounded-3xl p-6 sm:p-10 border border-purple-100 shadow-xl shadow-purple-500/10 relative overflow-hidden">
+          <div className="absolute -top-20 -right-16 w-64 h-64 rounded-full bg-purple-100/70 blur-3xl pointer-events-none" />
+          <QuizPlayer onExit={onBack} />
+        </section>
       </main>
     </div>
   )
@@ -1560,7 +1847,7 @@ function Footer({ onNavigate }: { onNavigate?: (href: string) => void }) {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center">
-                <Icon name="computer" size={18} cls="text-white" />
+                <RobotLogo size={21} />
               </div>
               <span className="font-black text-lg text-white" style={{ fontFamily: 'Outfit,sans-serif' }}>
                 Le-Robots
@@ -1649,12 +1936,15 @@ function Footer({ onNavigate }: { onNavigate?: (href: string) => void }) {
 // ── App ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [currentView, setCurrentView] = useState<'home' | 'study-quiz'>('home')
+  const [currentView, setCurrentView] = useState<'home' | 'study-quiz' | 'quiz'>('home')
 
   useEffect(() => {
     const handleHash = () => {
       if (window.location.hash === '#estudos-quiz' || window.location.hash === '#quiz-hub') {
         setCurrentView('study-quiz')
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+      } else if (window.location.hash === '#quiz') {
+        setCurrentView('quiz')
         window.scrollTo({ top: 0, behavior: 'smooth' })
       }
     }
@@ -1672,6 +1962,18 @@ export default function App() {
   const handleBackToHome = () => {
     setCurrentView('home')
     window.location.hash = '#estudos'
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleOpenQuiz = () => {
+    setCurrentView('quiz')
+    window.location.hash = '#quiz'
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
+  const handleBackToStudies = () => {
+    setCurrentView('study-quiz')
+    window.location.hash = '#estudos-quiz'
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
@@ -1697,7 +1999,9 @@ export default function App() {
       />
 
       {currentView === 'study-quiz' ? (
-        <SplitStudyQuizScreen onBack={handleBackToHome} />
+        <StudyHubScreen onBack={handleBackToHome} onOpenQuiz={handleOpenQuiz} />
+      ) : currentView === 'quiz' ? (
+        <DedicatedQuizScreen onBack={handleBackToStudies} />
       ) : (
         <>
           <Navbar onNavigate={handleNavigate} />
