@@ -80,8 +80,11 @@ const quotes = [
 function BookMockup({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
   const isSm = size === 'sm'
   const isLg = size === 'lg'
-  const width = isSm ? 'w-44' : isLg ? 'w-72 sm:w-80' : 'w-56'
-  const height = isSm ? 'h-56' : isLg ? 'h-96 sm:h-[400px]' : 'h-72'
+  const width = isSm ? 'w-44' : isLg ? 'w-72 sm:w-80' : 'w-60'
+  const height = isSm ? 'h-60' : isLg ? 'h-96 sm:h-[410px]' : 'h-80'
+  const padding = isSm ? 'p-4' : isLg ? 'p-7' : 'p-5 sm:p-6'
+  const titleSize = isSm ? 'text-lg' : isLg ? 'text-2xl sm:text-3xl' : 'text-xl'
+  const iconSize = isSm ? 18 : isLg ? 26 : 22
 
   return (
     <div className="relative flex justify-center py-4">
@@ -110,44 +113,44 @@ function BookMockup({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) {
         />
 
         {/* Content on Book Cover */}
-        <div className="p-6 sm:p-7 flex flex-col h-full justify-between relative z-10">
+        <div className={`${padding} flex flex-col h-full justify-between relative z-10`}>
           <div>
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-inner">
-                <Icon name="computer" size={26} cls="text-white" />
+            <div className="flex items-center justify-between mb-3">
+              <div className="w-10 h-10 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center shadow-inner">
+                <Icon name="computer" size={iconSize} cls="text-white" />
               </div>
-              <span className="px-3 py-1 rounded-full bg-white/10 text-blue-200 text-[11px] font-bold tracking-wider uppercase border border-white/15">
+              <span className="px-2.5 py-0.5 rounded-full bg-white/10 text-blue-200 text-[10px] font-bold tracking-wider uppercase border border-white/15">
                 Material Base
               </span>
             </div>
 
             <div
-              className="text-white font-black text-2xl sm:text-3xl leading-tight mb-2 tracking-tight"
+              className={`text-white font-black ${titleSize} leading-tight mb-1 tracking-tight`}
               style={{ fontFamily: 'Outfit, sans-serif' }}
             >
               Le-Robots
               <br />
               <span className="text-blue-300">Apostila</span>
             </div>
-            <p className="text-blue-200 text-xs sm:text-sm font-medium">Curso Completo de Informática</p>
+            <p className="text-blue-200 text-xs font-medium">Curso Completo de Informática</p>
           </div>
 
           <div>
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-500/25 border border-blue-400/30 text-blue-100 text-xs font-bold">
-                <Icon name="library_books" size={14} cls="text-blue-300" />
+            <div className="flex flex-wrap items-center gap-1.5 mb-2.5">
+              <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-blue-500/25 border border-blue-400/30 text-blue-100 text-xs font-bold">
+                <Icon name="library_books" size={13} cls="text-blue-300" />
                 10 Módulos
               </div>
-              <div className="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-xs font-semibold">
-                <Icon name="verified" size={13} cls="text-emerald-400" />
+              <div className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-emerald-500/20 border border-emerald-400/30 text-emerald-300 text-[11px] font-semibold">
+                <Icon name="verified" size={12} cls="text-emerald-400" />
                 Google Docs
               </div>
             </div>
 
-            <div className="h-[1px] bg-white/20 my-3" />
-            <div className="flex items-center justify-between text-white/80 text-xs">
-              <span>Edição Oficial 2025</span>
-              <span className="text-blue-200 text-[11px]">Rede Batista</span>
+            <div className="h-[1px] bg-white/20 my-2" />
+            <div className="flex items-center justify-between text-white/80 text-[11px]">
+              <span>Edição 2025</span>
+              <span className="text-blue-200 text-[10px]">Rede Batista</span>
             </div>
           </div>
         </div>
@@ -721,18 +724,18 @@ function AprendizadoSection({ onOpenStudyQuiz }: { onOpenStudyQuiz: () => void }
 
                 {/* Floating Quiz Badge */}
                 <div
-                  className="absolute -bottom-2 -right-4 sm:-right-6 bg-white/95 backdrop-blur-md rounded-2xl p-3.5 border border-purple-200/80 shadow-lg shadow-purple-500/10 flex items-center gap-3 animate-float"
+                  className="absolute -bottom-2 -right-2 sm:-right-4 bg-white/95 backdrop-blur-md rounded-2xl p-3 border border-purple-200 shadow-xl shadow-purple-500/15 flex items-center gap-3 animate-float z-20"
                   style={{ animationDelay: '1.5s' }}
                 >
-                  <div className="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
-                    <Icon name="quiz" size={20} />
+                  <div className="w-9 h-9 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center shrink-0">
+                    <Icon name="quiz" size={18} />
                   </div>
                   <div>
                     <div className="text-xs font-bold text-gray-900 flex items-center gap-1.5">
                       <span>Quiz Interativo</span>
                       <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                     </div>
-                    <div className="text-[11px] text-purple-700 font-semibold">10 Módulos • Desafios</div>
+                    <div className="text-[10px] text-purple-700 font-semibold">10 Módulos • Desafios</div>
                   </div>
                 </div>
               </div>
