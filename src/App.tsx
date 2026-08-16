@@ -231,17 +231,15 @@ function QuizMockup() {
                 key={opt.id}
                 type="button"
                 onClick={() => setSelectedOption(opt.id)}
-                className={`w-full text-left p-2.5 rounded-xl border text-xs font-medium transition-all flex items-center justify-between gap-2 cursor-pointer ${
-                  isSelected
+                className={`w-full text-left p-2.5 rounded-xl border text-xs font-medium transition-all flex items-center justify-between gap-2 cursor-pointer ${isSelected
                     ? 'bg-purple-600 text-white border-purple-600 shadow-md shadow-purple-600/20'
                     : 'bg-white text-gray-700 border-gray-200 hover:border-purple-300 hover:bg-purple-50/50'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-2">
                   <span
-                    className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${
-                      isSelected ? 'bg-white text-purple-700' : 'bg-gray-100 text-gray-600'
-                    }`}
+                    className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 ${isSelected ? 'bg-white text-purple-700' : 'bg-gray-100 text-gray-600'
+                      }`}
                   >
                     {String.fromCharCode(65 + opt.id)}
                   </span>
@@ -329,11 +327,10 @@ function Navbar({ onNavigate }: { onNavigate?: (href: string) => void }) {
               <a
                 href={item.href}
                 onClick={e => handleLinkClick(e, item.href)}
-                className={`relative py-1 text-sm font-medium transition-colors duration-200 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-200 hover:after:w-full ${
-                  scrolled
+                className={`relative py-1 text-sm font-medium transition-colors duration-200 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[2px] after:transition-all after:duration-200 hover:after:w-full ${scrolled
                     ? 'text-slate-700 hover:text-blue-700 after:bg-blue-700'
                     : 'text-white/90 hover:text-white after:bg-white'
-                }`}
+                  }`}
               >
                 {item.label}
               </a>
@@ -342,9 +339,8 @@ function Navbar({ onNavigate }: { onNavigate?: (href: string) => void }) {
         </ul>
 
         <button
-          className={`lg:hidden p-2 rounded-lg transition-colors ${
-            scrolled ? 'text-gray-600 hover:bg-gray-100' : 'text-white hover:bg-white/10'
-          }`}
+          className={`lg:hidden p-2 rounded-lg transition-colors ${scrolled ? 'text-gray-600 hover:bg-gray-100' : 'text-white hover:bg-white/10'
+            }`}
           onClick={() => setMenuOpen(v => !v)}
           aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
         >
@@ -1082,58 +1078,280 @@ function SplitStudyQuizScreen({ onBack }: { onBack: () => void }) {
   )
 }
 
-// ── Apresentação ──────────────────────────────────────────────────────────────
+// ── Apresentação & Slides (Imagens Diretas) ──────────────────────────────────
+
+import slide1Img from '@/assets/slides/slide-1.jpg'
+import slide2Img from '@/assets/slides/slide-2.jpg'
+import slide3Img from '@/assets/slides/slide-3.jpg'
+import slide4Img from '@/assets/slides/slide-4.jpg'
+import slide5Img from '@/assets/slides/slide-5.jpg'
+import slide6Img from '@/assets/slides/slide-6.jpg'
+import slide7Img from '@/assets/slides/slide-7.jpg'
+
+interface SlideItem {
+  id: number
+  number: string
+  title: string
+  subtitle: string
+  image: string
+}
+
+const presentationSlides: SlideItem[] = [
+  {
+    id: 1,
+    number: '01',
+    title: 'Capa — Tecnologia que Transforma',
+    subtitle: 'Apresentação do Projeto e Equipe',
+    image: slide1Img,
+  },
+  {
+    id: 2,
+    number: '02',
+    title: 'Introdução',
+    subtitle: 'Contexto e Justificativa do Projeto',
+    image: slide2Img,
+  },
+  {
+    id: 3,
+    number: '03',
+    title: 'Objetivos',
+    subtitle: 'Metas e Entregas Principais',
+    image: slide3Img,
+  },
+  {
+    id: 4,
+    number: '04',
+    title: 'Metodologia',
+    subtitle: 'Ferramentas e Processo de Produção',
+    image: slide4Img,
+  },
+  {
+    id: 5,
+    number: '05',
+    title: 'Resultados',
+    subtitle: 'Importância da Qualificação & Aprendizados',
+    image: slide5Img,
+  },
+  {
+    id: 6,
+    number: '06',
+    title: 'Conclusão',
+    subtitle: 'Síntese do Projeto & Citação Pochmann',
+    image: slide6Img,
+  },
+  {
+    id: 7,
+    number: '07',
+    title: 'Referências Bibliográficas',
+    subtitle: 'ONU ODS 8, Pochmann e Blog Uniube',
+    image: slide7Img,
+  },
+]
 
 function Apresentacao() {
-  const SLIDES_URL = ''
+  const [currentSlideIndex, setCurrentSlideIndex] = useState(0)
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [imageLoaded, setImageLoaded] = useState(true)
+
+  const currentSlide = presentationSlides[currentSlideIndex]
+  const totalSlides = presentationSlides.length
+
+  const nextSlide = () => {
+    setImageLoaded(false)
+    setCurrentSlideIndex((prev) => (prev + 1) % totalSlides)
+  }
+
+  const prevSlide = () => {
+    setImageLoaded(false)
+    setCurrentSlideIndex((prev) => (prev - 1 + totalSlides) % totalSlides)
+  }
+
+  const goToSlide = (idx: number) => {
+    if (idx !== currentSlideIndex) {
+      setImageLoaded(false)
+      setCurrentSlideIndex(idx)
+    }
+  }
+
+  // Auto-play timer
+  useEffect(() => {
+    if (!isPlaying) return
+    const interval = setInterval(() => {
+      nextSlide()
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [isPlaying, currentSlideIndex])
+
+  // Keyboard navigation & Esc for fullscreen
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowRight' || e.key === ' ') {
+        nextSlide()
+      } else if (e.key === 'ArrowLeft') {
+        prevSlide()
+      } else if (e.key === 'Escape' && isFullscreen) {
+        setIsFullscreen(false)
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [isFullscreen])
+
   return (
-    <section id="apresentacao" className="py-24 bg-white">
+    <section id="apresentacao" className="py-24 bg-slate-50/80 relative overflow-hidden">
+      {/* Ambient background decoration */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-blue-100/50 rounded-full blur-3xl pointer-events-none -z-10" />
+
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold mb-5"
-            style={{ background: '#f3e8ff', color: '#7c3aed' }}>
-            <Icon name="slideshow" size={14} />
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <div
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-bold tracking-wide mb-4 shadow-xs"
+            style={{ background: '#f3e8ff', color: '#7c3aed' }}
+          >
+            <Icon name="slideshow" size={16} />
             Apresentação do Projeto
           </div>
-          <h2 className="text-4xl font-black text-gray-900 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 mb-4" style={{ fontFamily: 'Outfit, sans-serif' }}>
             Slides da <span className="text-blue-700">Apresentação</span>
           </h2>
-          <p className="text-gray-500 max-w-xl mx-auto">
-            Confira os slides completos do projeto Le-Robots, preparados para apresentação escolar.
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+            Confira os slides oficiais do projeto <span className="font-semibold text-gray-800">Tecnologia que Transforma</span>.
           </p>
         </div>
 
-        <div className="rounded-3xl overflow-hidden border border-gray-200 shadow-lg bg-gray-50 aspect-video flex items-center justify-center mb-8"
-          style={{ maxHeight: 500 }}>
-          {SLIDES_URL ? (
-            <iframe src={SLIDES_URL} title="Apresentação Le-Robots" className="w-full h-full" allowFullScreen />
-          ) : (
-            <div className="flex flex-col items-center gap-4 text-gray-400 p-12">
-              <div className="w-20 h-20 rounded-2xl bg-blue-100 flex items-center justify-center">
-                <Icon name="slideshow" size={40} cls="text-blue-400" />
+        {/* Presentation Slide Player Box */}
+        <div
+          className={`relative rounded-3xl transition-all duration-300 ${isFullscreen
+              ? 'fixed inset-0 z-50 bg-black/95 p-4 sm:p-8 flex flex-col justify-between overflow-y-auto rounded-none'
+              : 'bg-slate-900 border border-slate-800 shadow-2xl shadow-blue-950/20 mb-8 overflow-hidden'
+            }`}
+        >
+          {/* Top Player Control Bar */}
+          <div className="px-5 py-3.5 bg-slate-950 text-white flex items-center justify-between border-b border-slate-800/80">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-xs">
+                <Icon name="slideshow" size={18} />
               </div>
-              <div className="text-center">
-                <div className="font-semibold text-gray-600 mb-1">Apresentação em breve</div>
-                <div className="text-sm text-gray-400">O link do Google Slides será adicionado aqui.</div>
+              <div>
+                <div className="text-xs font-bold text-blue-400 uppercase tracking-wider">
+                  Slide {currentSlide.number} de 0{totalSlides}
+                </div>
+                <div className="text-sm font-semibold text-slate-200 hidden sm:block">
+                  {currentSlide.title}
+                </div>
               </div>
             </div>
-          )}
-        </div>
 
-        <div className="flex justify-center">
-          <a
-            href={SLIDES_URL || '#'}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full font-semibold text-white text-sm transition-all hover:scale-105 active:scale-95"
-            style={{ background: 'linear-gradient(135deg, #7c3aed, #6d28d9)' }}
-          >
-            <Icon name="play_circle" size={20} cls="text-white" />
-            Assistir Apresentação
-          </a>
+            {/* Actions: AutoPlay, Fullscreen */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setIsPlaying(!isPlaying)}
+                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${isPlaying
+                    ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40'
+                    : 'bg-slate-800 hover:bg-slate-700 text-slate-300'
+                  }`}
+                title={isPlaying ? 'Pausar Reprodução Automática' : 'Iniciar Reprodução Automática'}
+              >
+                <Icon name={isPlaying ? 'pause' : 'play_arrow'} size={16} />
+                <span className="hidden md:inline">{isPlaying ? 'Pausar' : 'Auto Play'}</span>
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setIsFullscreen(!isFullscreen)}
+                className="p-1.5 sm:px-3 sm:py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-medium inline-flex items-center gap-1.5 transition-all"
+                title={isFullscreen ? 'Sair da Tela Cheia' : 'Modo Tela Cheia'}
+              >
+                <Icon name={isFullscreen ? 'fullscreen_exit' : 'fullscreen'} size={18} />
+                <span className="hidden md:inline">{isFullscreen ? 'Sair' : 'Tela Cheia'}</span>
+              </button>
+            </div>
+          </div>
+
+          {/* Slide Progress Line */}
+          <div className="w-full bg-slate-800 h-1">
+            <div
+              className="h-full bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 transition-all duration-300 ease-out"
+              style={{ width: `${((currentSlideIndex + 1) / totalSlides) * 100}%` }}
+            />
+          </div>
+
+          {/* Main Slide Image Display Canvas */}
+          <div className="relative w-full bg-black/90 flex items-center justify-center select-none overflow-hidden group">
+            {/* Direct Slide Image */}
+            <div className="w-full max-w-5xl aspect-[16/9] flex items-center justify-center p-2 sm:p-6">
+              <img
+                key={currentSlide.id}
+                src={currentSlide.image}
+                alt={currentSlide.title}
+                onLoad={() => setImageLoaded(true)}
+                className={`w-full h-full object-contain rounded-xl sm:rounded-2xl shadow-2xl transition-all duration-300 ${imageLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+                  }`}
+              />
+            </div>
+
+            {/* Left & Right Floating Overlay Navigation Arrows */}
+            <button
+              type="button"
+              onClick={prevSlide}
+              className="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/60 hover:bg-blue-600 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-200 shadow-xl hover:scale-110 active:scale-95"
+              title="Slide Anterior (Seta Esquerda)"
+            >
+              <Icon name="chevron_left" size={28} />
+            </button>
+
+            <button
+              type="button"
+              onClick={nextSlide}
+              className="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/60 hover:bg-blue-600 text-white backdrop-blur-md border border-white/20 flex items-center justify-center transition-all duration-200 shadow-xl hover:scale-110 active:scale-95"
+              title="Próximo Slide (Seta Direita)"
+            >
+              <Icon name="chevron_right" size={28} />
+            </button>
+          </div>
+
+          {/* Bottom Player Navigation Controls */}
+          <div className="px-5 py-3.5 bg-slate-950 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-3">
+            {/* Slide Indicator Text */}
+            <div className="text-xs text-slate-400 font-medium order-2 sm:order-1">
+              Use as setas <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">←</kbd> e <kbd className="px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">→</kbd> do teclado para navegar
+            </div>
+
+            {/* Prev / Counter / Next Controls */}
+            <div className="flex items-center gap-3 order-1 sm:order-2">
+              <button
+                type="button"
+                onClick={prevSlide}
+                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold inline-flex items-center gap-1.5 transition-all active:scale-95 border border-slate-700"
+              >
+                <Icon name="arrow_back" size={16} />
+                Anterior
+              </button>
+
+              <span className="text-xs font-bold text-blue-400 px-2 py-1 rounded-lg bg-blue-950/60 border border-blue-800/60">
+                {currentSlideIndex + 1} / {totalSlides}
+              </span>
+
+              <button
+                type="button"
+                onClick={nextSlide}
+                className="px-5 py-2 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white text-xs font-semibold inline-flex items-center gap-1.5 transition-all shadow-md shadow-blue-600/30 active:scale-95"
+              >
+                Próximo
+                <Icon name="arrow_forward" size={16} />
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   )
 }
+
+
 
 // ── Metodologia ───────────────────────────────────────────────────────────────
 
